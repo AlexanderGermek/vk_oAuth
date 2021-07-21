@@ -1,0 +1,6 @@
+framework module Pods_VK_oAuth2 {
+  umbrella header "Pods-VK_oAuth2-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -10,10 +10,27 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if AuthManager.shared.isSignedIn && !AuthManager.shared.shouldRefreshToken {
+            
+            let photosVC = PhotosViewController()
+            let navVC = UINavigationController(rootViewController: photosVC)
+            navVC.navigationBar.isTranslucent = false
+
+            window.rootViewController = navVC
+        }
+        else {
+            window.rootViewController = LoginViewController()
+        }
+        
+        window.makeKeyAndVisible()
+        self.window = window
+        
         return true
     }
 

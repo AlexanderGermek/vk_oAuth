@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  VK_oAuth2
+
+  Created by iMac on 21.07.2021.
+  
+*/
+
+"authorizationTitleName" = "Login from VK";
+"exitButtonTitle" = "Exit";
+"dateTitle" = "en_US";
+
+
+"settingsTitle" = "Settings";
+"settingsMessage" = "What do you want to do?";
+
+"settingsSaveButtonTitle" = "Save in gallery";
+"settingsSharedButtonTitle" = "Share...";
+
+
+"authorizationFailedAlertTitle" = "Authorization failed";
+"authorizationFailedAlertMessage" = "You can try it again";
+
+
+"authViewControllerTitle" = "Authorization";
+
+"signOutTitle" = "Sign Out";
+"signOutMessage" = "Are you sure?";
+"signOutCancelTitle" = "Cancel";
+"signOutButtonTitle" = "Sign Out";
+
+
+"failedToGetPhotosAlertTitle" = "Failed to get photos!";
+
+
+"saveInGalleryFailedTitle" = "Save error";
+"saveInGallerySuccessTitle" = "Saved";
+"saveInGallerySuccessMessage" = "Image has been saved to your gallery!";
