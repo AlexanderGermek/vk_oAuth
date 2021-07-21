@@ -73,6 +73,7 @@ class PhotosViewController: UIViewController {
     private func fetchPhotos() {
         
         APICaller.shared.getAlbumPhotos { [weak self] (result) in
+            
             DispatchQueue.main.async {
                 
                 switch result {
