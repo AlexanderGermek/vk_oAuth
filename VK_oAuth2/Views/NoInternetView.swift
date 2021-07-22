@@ -67,7 +67,7 @@ class NoInternetView: UIView {
         
         noInternetImageView.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(100)//height * 0.8)
+            make.height.equalTo(100)
         }
         
         textLabel.snp.makeConstraints { (make) in

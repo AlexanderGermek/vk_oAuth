@@ -94,6 +94,10 @@ class PhotosViewController: UIViewController {
         let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
         
+        let buttonTitle = NSLocalizedString("noInternetConnectionButtonTitle", comment: "")
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: { [weak self] (_) in
+            self?.fetchPhotos()
+        }))
         present(alert, animated: true)
     }
     
