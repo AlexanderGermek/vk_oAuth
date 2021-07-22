@@ -37,3 +37,7 @@
 "saveInGalleryFailedTitle" = "Ошибка сохранения";
 "saveInGallerySuccessTitle" = "Сохранено";
 "saveInGallerySuccessMessage" = "Фото было успешно сохранено в галерею!";
+
+
+"noInternetConnectionText" = "Нет соединения с интернетом";
+"noInternetConnectionButtonTitle" = "Попробовать снова!";

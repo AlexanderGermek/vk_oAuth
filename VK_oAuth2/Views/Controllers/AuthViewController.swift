@@ -10,6 +10,8 @@ import WebKit
 import SnapKit
 
 class AuthViewController: UIViewController, WKNavigationDelegate {
+
+    private let noConnectionView = NoInternetView()
     
     private let webView: WKWebView = {
         let web = WKWebView()
@@ -30,13 +32,23 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
 
         title = NSLocalizedString("authViewControllerTitle", comment: "")
         view.backgroundColor = .systemBackground
+        
         webView.navigationDelegate = self
         view.addSubview(webView)
         
+        noConnectionView.delegate = self
+        view.addSubview(noConnectionView)
         view.addSubview(indicator)
         
         
         makeConstraints()
+        
+        loadRequest()
+        
+        
+    }
+    
+    private func loadRequest() {
         
         guard let url = AuthManager.shared.signInURL else {
             return
@@ -44,8 +56,6 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         
         indicator.startAnimating()
         webView.load(URLRequest(url: url))
-        
-        
     }
     
     private func makeConstraints() {
@@ -56,14 +66,33 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         indicator.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
         }
+        
+        noConnectionView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.width.equalToSuperview().dividedBy(2)
+        }
     }
     
     
-    //MARK: - WKNavigationDelegate    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-
+    //MARK: - WKNavigationDelegate 
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print(error.localizedDescription)
+        webView.isHidden = true
         indicator.stopAnimating()
         
+        noConnectionView.isHidden = false
+    }
+    
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+        if webView.isHidden {
+            webView.isHidden = false
+        }
+        indicator.stopAnimating()
+        if !noConnectionView.isHidden {
+            noConnectionView.isHidden = true
+        }
         guard let redirectString = webView.url?.absoluteString else {
             return
         }
@@ -92,4 +121,14 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
     }
     
 
+}
+
+extension AuthViewController: NoInternetViewDelegate {
+    func didTapTryAgainButton() {
+        noConnectionView.isHidden = true
+        webView.isHidden = false
+        loadRequest()
+    }
+    
+    
 }

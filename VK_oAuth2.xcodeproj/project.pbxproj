@@ -24,6 +24,7 @@
 		88E6914426A5CFA500DE1C69 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6914326A5CFA500DE1C69 /* AuthManager.swift */; };
 		88E6914926A5D80000DE1C69 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6914826A5D80000DE1C69 /* AuthViewController.swift */; };
 		88E6917726A60AC300DE1C69 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6917626A60AC300DE1C69 /* PhotosViewController.swift */; };
+		88EF3C4D26A970DC0096FB45 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF3C4C26A970DC0096FB45 /* NoInternetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		88E6914326A5CFA500DE1C69 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		88E6914826A5D80000DE1C69 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		88E6917626A60AC300DE1C69 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		88EF3C4C26A970DC0096FB45 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		B924D31110C0AFCE50EEDAFB /* Pods-VK_oAuth2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_oAuth2.debug.xcconfig"; path = "Target Support Files/Pods-VK_oAuth2/Pods-VK_oAuth2.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA484C26692264140E78876 /* Pods_VK_oAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_oAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 			children = (
 				88A27A9726A642EA00DAF439 /* Cells */,
 				88E6914726A5D7EA00DE1C69 /* Controllers */,
+				88EF3C4C26A970DC0096FB45 /* NoInternetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			files = (
 				88E6913626A5BAFC00DE1C69 /* Extensions.swift in Sources */,
 				88E6917726A60AC300DE1C69 /* PhotosViewController.swift in Sources */,
+				88EF3C4D26A970DC0096FB45 /* NoInternetView.swift in Sources */,
 				88E6914426A5CFA500DE1C69 /* AuthManager.swift in Sources */,
 				88E6911C26A5B9E200DE1C69 /* LoginViewController.swift in Sources */,
 				88E6914926A5D80000DE1C69 /* AuthViewController.swift in Sources */,
