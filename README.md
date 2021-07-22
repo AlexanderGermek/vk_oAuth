@@ -1,8 +1,8 @@
 # vk_oAuth
 
-Launch screen | Authorization | Album photos
---- | --- | ---
-![Снимок экрана 2021-07-21 в 12 20 20](https://user-images.githubusercontent.com/76963888/126465117-b02a8030-8fc3-4e0f-b17d-a2696f79a19a.png)|![Снимок экрана 2021-07-21 в 12 20 32](https://user-images.githubusercontent.com/76963888/126465128-ae45609f-555c-45ee-b9c7-30e53272d768.png)|![Снимок экрана 2021-07-21 в 12 20 41](https://user-images.githubusercontent.com/76963888/126465145-1ce3ca16-cd20-4b82-a8e6-8646033e8a03.png)
+Launch screen | Authorization | Connection Error View | Album photos
+--- | --- | --- | ---
+![Снимок экрана 2021-07-21 в 12 20 20](https://user-images.githubusercontent.com/76963888/126465117-b02a8030-8fc3-4e0f-b17d-a2696f79a19a.png)|![Снимок экрана 2021-07-21 в 12 20 32](https://user-images.githubusercontent.com/76963888/126465128-ae45609f-555c-45ee-b9c7-30e53272d768.png)|![Снимок экрана 2021-07-22 в 13 47 27](https://user-images.githubusercontent.com/76963888/126627817-2c88c502-75e7-4f73-90d0-3bee130f6d7b.png)|![Снимок экрана 2021-07-21 в 12 20 41](https://user-images.githubusercontent.com/76963888/126465145-1ce3ca16-cd20-4b82-a8e6-8646033e8a03.png)
 
 
 Detail photo | Saving | Saving alert
