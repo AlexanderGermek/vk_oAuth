@@ -36,3 +36,6 @@
 "saveInGalleryFailedTitle" = "Save error";
 "saveInGallerySuccessTitle" = "Saved";
 "saveInGallerySuccessMessage" = "Image has been saved to your gallery!";
+
+"noInternetConnectionText" = "No Internet connection";
+"noInternetConnectionButtonTitle" = "Try again!";
