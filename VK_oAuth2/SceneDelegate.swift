@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension SceneDelegate {
+    static var shared: SceneDelegate {
+        return UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -18,20 +24,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        if AuthManager.shared.isSignedIn && !AuthManager.shared.shouldRefreshToken {
-            
-            let photosVC = PhotosViewController()
-            let navVC = UINavigationController(rootViewController: photosVC)
-            navVC.navigationBar.isTranslucent = false
-
-            window.rootViewController = navVC
-        }
-        else {
-            window.rootViewController = LoginViewController()
-        }
         
+        let coordinator = MainCoordinator()
         window.makeKeyAndVisible()
         self.window = window
+        
+        coordinator.start()
+        
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

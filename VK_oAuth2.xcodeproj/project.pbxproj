@@ -14,6 +14,8 @@
 		88A27A9926A6430800DAF439 /* AlbumPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A27A9826A6430800DAF439 /* AlbumPhotosCollectionViewCell.swift */; };
 		88A3C8C826A78FBA003317FD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3C8C726A78FBA003317FD /* Photo.swift */; };
 		88BAFA0626A80ABC0036BC10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BAFA0826A80ABC0036BC10 /* Localizable.strings */; };
+		88E15B6126D16C390020951C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E15B6026D16C390020951C /* CoordinatorProtocol.swift */; };
+		88E15B6426D16DEE0020951C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E15B6326D16DEE0020951C /* MainCoordinator.swift */; };
 		88E6911826A5B9E200DE1C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6911726A5B9E200DE1C69 /* AppDelegate.swift */; };
 		88E6911A26A5B9E200DE1C69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6911926A5B9E200DE1C69 /* SceneDelegate.swift */; };
 		88E6911C26A5B9E200DE1C69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6911B26A5B9E200DE1C69 /* LoginViewController.swift */; };
@@ -37,6 +39,8 @@
 		88BAF9FE26A80A7B0036BC10 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		88BAFA0726A80ABC0036BC10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88BAFA0A26A80AC00036BC10 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88E15B6026D16C390020951C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		88E15B6326D16DEE0020951C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		88E6911426A5B9E200DE1C69 /* VK_oAuth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_oAuth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E6911726A5B9E200DE1C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88E6911926A5B9E200DE1C69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		88E15B5F26D16BBA0020951C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				88E15B6026D16C390020951C /* CoordinatorProtocol.swift */,
+				88E15B6326D16DEE0020951C /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		88E6910B26A5B9E200DE1C69 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +124,7 @@
 		88E6911626A5B9E200DE1C69 /* VK_oAuth2 */ = {
 			isa = PBXGroup;
 			children = (
+				88E15B5F26D16BBA0020951C /* Coordinator */,
 				88E6911726A5B9E200DE1C69 /* AppDelegate.swift */,
 				88E6911926A5B9E200DE1C69 /* SceneDelegate.swift */,
 				88E6915426A5F2A700DE1C69 /* Models */,
@@ -299,12 +313,14 @@
 			files = (
 				88E6913626A5BAFC00DE1C69 /* Extensions.swift in Sources */,
 				88E6917726A60AC300DE1C69 /* PhotosViewController.swift in Sources */,
+				88E15B6126D16C390020951C /* CoordinatorProtocol.swift in Sources */,
 				88EF3C4D26A970DC0096FB45 /* NoInternetView.swift in Sources */,
 				88E6914426A5CFA500DE1C69 /* AuthManager.swift in Sources */,
 				88E6911C26A5B9E200DE1C69 /* LoginViewController.swift in Sources */,
 				88E6914926A5D80000DE1C69 /* AuthViewController.swift in Sources */,
 				8802274826A6ED210093E7C6 /* PhotoDetailViewController.swift in Sources */,
 				88A3C8C826A78FBA003317FD /* Photo.swift in Sources */,
+				88E15B6426D16DEE0020951C /* MainCoordinator.swift in Sources */,
 				88E6911826A5B9E200DE1C69 /* AppDelegate.swift in Sources */,
 				88A27A9526A640F400DAF439 /* AlbumPhotosViewModel.swift in Sources */,
 				88A27A9926A6430800DAF439 /* AlbumPhotosCollectionViewCell.swift in Sources */,
