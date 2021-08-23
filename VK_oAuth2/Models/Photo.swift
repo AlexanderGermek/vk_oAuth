@@ -10,7 +10,6 @@ import Foundation
 
 
 struct Photo {
-    
     let date: Int
     let id: Int
     let urlString: String

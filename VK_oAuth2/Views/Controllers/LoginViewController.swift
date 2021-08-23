@@ -12,9 +12,9 @@ class LoginViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     
-    private let AppLabel: UILabel = {
+    private let appLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("AppNameLabel", comment: "")
+        label.text = localizedString(byKey: "AppNameLabel")
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 48, weight: .bold)
@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
-        button.setTitle(NSLocalizedString("authorizationTitleName", comment: ""), for: .normal)
+        button.setTitle(localizedString(byKey: "authorizationTitleName"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         return button
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         
         title = ""
         view.backgroundColor = .white
-        view.addSubview(AppLabel)
+        view.addSubview(appLabel)
         view.addSubview(loginButton)
         
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     //MARK: - Private functions
     private func makeConstraints() {
         
-        AppLabel.snp.makeConstraints { (make) in
+        appLabel.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().inset(20)
             make.top.equalTo(view.snp.topMargin).offset(100)

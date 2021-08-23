@@ -26,7 +26,7 @@ class NoInternetView: UIView {
     
     private let textLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("noInternetConnectionText", comment: "")
+        label.text = localizedString(byKey: "noInternetConnectionText")
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -36,7 +36,7 @@ class NoInternetView: UIView {
     
     private let tryAgainButton: UIButton = {
         let button = UIButton()
-        button.setTitle(NSLocalizedString("noInternetConnectionButtonTitle", comment: ""), for: .normal)
+        button.setTitle(localizedString(byKey: "noInternetConnectionButtonTitle"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.backgroundColor = .systemBlue
@@ -83,7 +83,9 @@ class NoInternetView: UIView {
         }
     }
     
+    
     @objc private func didTapTryAgainButton() {
+        
         delegate?.didTapTryAgainButton()
     }
 }

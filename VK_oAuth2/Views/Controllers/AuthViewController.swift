@@ -32,7 +32,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("authViewControllerTitle", comment: "")
+        title = localizedString(byKey: "authViewControllerTitle")
         view.backgroundColor = .systemBackground
         
         webView.navigationDelegate = self
@@ -42,25 +42,23 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         view.addSubview(noConnectionView)
         view.addSubview(indicator)
         
-        
         makeConstraints()
         
         loadRequest()
-        
-        
     }
+    
     
     private func loadRequest() {
         
-        guard let url = AuthManager.shared.signInURL else {
-            return
-        }
+        guard let url = AuthManager.shared.signInURL else { return }
         
         indicator.startAnimating()
         webView.load(URLRequest(url: url))
     }
     
+    
     private func makeConstraints() {
+        
         webView.snp.makeConstraints { (make) in
             make.leading.top.bottom.trailing.equalToSuperview()
         }
@@ -96,6 +94,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         if !noConnectionView.isHidden {
             noConnectionView.isHidden = true
         }
+        
         guard let redirectString = webView.url?.absoluteString else {
             return
         }
@@ -119,20 +118,20 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
             self?.dismiss(animated: true) {
                 self?.authCompletion?(success)
             }
-
         }
     }
     
 
 }
 
+
+//MARK: - NoInternetViewDelegate
 extension AuthViewController: NoInternetViewDelegate {
     
     func didTapTryAgainButton() {
+        
         noConnectionView.isHidden = true
         webView.isHidden = false
         loadRequest()
     }
-    
-    
 }

@@ -9,7 +9,6 @@ import UIKit
 import SDWebImage
 
 
-
 class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var coordinator: MainCoordinator?
@@ -89,11 +88,13 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
  
     }
     
+    
     private func configureImageView() {
         
         imageView.sd_setImage(with: URL(string: photo.urlString), placeholderImage: UIImage(systemName: "photo"))
         scrollView.addSubview(imageView)
     }
+    
     
     func configureCollectionView() {
         
@@ -142,8 +143,10 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
         })
     }
     
+    
     //MARK: - Actions
-    @objc private func handlePinch(pinchGesture: UIPinchGestureRecognizer){
+    @objc private func handlePinch(pinchGesture: UIPinchGestureRecognizer) {
+        
         if pinchGesture.state == .began {
             self.imageViewScale = 1.0
         }
@@ -153,13 +156,14 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
         self.imageView.transform = self.imageView.transform.scaledBy(x: newScale, y: newScale)
         
         self.imageViewScale = pinchGesture.scale
-        
     }
+    
     
     @objc private func didTapShareButton() {
                 
         coordinator?.showAlertSheetToSaveOrShare()
     }
+    
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         
@@ -167,20 +171,23 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
         var message = ""
         
         if let error = error {
-            title  = NSLocalizedString("saveInGalleryFailedTitle", comment: "")
+            
+            title   = localizedString(byKey: "saveInGalleryFailedTitle")
             message = error.localizedDescription
+            
         } else {
-            title = NSLocalizedString("saveInGallerySuccessTitle", comment: "")
-            message = NSLocalizedString("saveInGallerySuccessMessage", comment: "")
+            
+            title   = localizedString(byKey: "saveInGallerySuccessTitle")
+            message = localizedString(byKey: "saveInGallerySuccessMessage")
         }
         
         coordinator?.presentAlert(withTitle: title, andMessage: message)
-        
     }
-    
 
 }
 
+
+//MARK: - PhotoDetailViewShareMenuDelegate
 extension PhotoDetailViewController: PhotoDetailViewShareMenuDelegate {
     
     func didTapSaveInGallery() {
@@ -192,16 +199,20 @@ extension PhotoDetailViewController: PhotoDetailViewShareMenuDelegate {
     
 }
 
-
+//MARK: - UICollectionViewDataSource
 extension PhotoDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return otherPhotos.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumPhotosCollectionViewCell.identifire, for: indexPath) as? AlbumPhotosCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: AlbumPhotosCollectionViewCell.identifire,
+                for: indexPath) as? AlbumPhotosCollectionViewCell else {
             return UICollectionViewCell()
         }
         
@@ -211,7 +222,5 @@ extension PhotoDetailViewController: UICollectionViewDataSource {
         cell.configure(with: model)
         return cell
     }
-    
-    
 }
 

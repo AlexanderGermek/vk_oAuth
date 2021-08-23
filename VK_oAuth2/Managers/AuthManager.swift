@@ -38,13 +38,16 @@ final class AuthManager {
     
     //MARK: - Public properties
     public var shouldRefreshToken: Bool {
+        
         guard let expirationDate = tokenExpirationDate else {
             return false
         }
+        
         let currentDate = Date()
         let fiveMinutes: TimeInterval = 300 // на всякий случай добавим 5 минут
         return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
     }
+    
     
     //MARK: - Public func-s
     public func finishAuthorization(with redirectString: String, completion: @escaping (Bool) -> Void) {
@@ -90,6 +93,7 @@ final class AuthManager {
         completion(true)
     }
     
+    
     public func signOut(completion: @escaping (Bool) -> Void) {
         
         UserDefaults.standard.set(nil, forKey: "access_token")
@@ -97,9 +101,8 @@ final class AuthManager {
         UserDefaults.standard.setValue(nil, forKey: "expirationDate")
         
         completion(true)
-        
-        
     }
+    
     
     //MARK: - Private func-s
     private func cacheToken(with token: String, and expires_in: Int) {
@@ -108,6 +111,5 @@ final class AuthManager {
         
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(expires_in)), forKey: "expirationDate")
     }
-    
-    
+
 }

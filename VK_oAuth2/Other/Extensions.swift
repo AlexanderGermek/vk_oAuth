@@ -40,7 +40,13 @@ extension DateFormatter {
     static let titleDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM YYYY"
-        dateFormatter.locale = Locale(identifier: NSLocalizedString("dateTitle", comment: ""))
+        dateFormatter.locale = Locale(identifier: VK_oAuth2.localizedString(byKey: "dateTitle"))
         return dateFormatter
     }()
+}
+
+
+func localizedString(byKey: String) -> String {
+    
+    return NSLocalizedString(byKey, comment: "")
 }

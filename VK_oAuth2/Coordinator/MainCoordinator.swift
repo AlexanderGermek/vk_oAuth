@@ -23,38 +23,38 @@ class MainCoordinator: Coordinator {
         self.window = window
     }
     
+    
     func start() {
         
         let shared = AuthManager.shared
-
+        
         if shared.isSignedIn && !shared.shouldRefreshToken {
-
+            
             let photosVC = PhotosViewController()
             photosVC.coordinator = self
             
             navigationController = UINavigationController(rootViewController: photosVC)
             navigationController?.navigationBar.isTranslucent = false
-           // window?.rootViewController = navigationController
             
             UIView.transition(with: window!, duration: 0.3, options: [.transitionFlipFromLeft]) { [weak self] in
                 self?.window?.rootViewController = self?.navigationController
             }
-          
+            
         } else {
             
             let loginVC = LoginViewController()
             loginVC.coordinator = self
-
+            
             
             navigationController = UINavigationController(rootViewController: loginVC)
             navigationController?.navigationBar.isHidden = true
-            //window?.rootViewController = navigationController
             
             UIView.transition(with: window!, duration: 0.3, options: [.transitionFlipFromRight]) { [weak self] in
                 self?.window?.rootViewController = self?.navigationController
             }
         }
     }
+    
     
     func didTapLoginButton() {
         
@@ -74,10 +74,11 @@ class MainCoordinator: Coordinator {
         
     }
     
+    
     private func showErrorAuthMessage() {
         
-        let title = NSLocalizedString("authorizationFailedAlertTitle", comment: "")
-        let message = NSLocalizedString("authorizationFailedAlertMessage", comment: "")
+        let title   = localizedString(byKey: "authorizationFailedAlertTitle")
+        let message = localizedString(byKey: "authorizationFailedAlertMessage")
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
@@ -95,13 +96,12 @@ class MainCoordinator: Coordinator {
     }
     
     
-    
     func showAlertSheetToSaveOrShare() {
         
-        let settingsTitle             = NSLocalizedString("settingsTitle", comment: "")
-        let settingsMessage           = NSLocalizedString("settingsMessage", comment: "")
-        let settingsSaveButtonTitle   = NSLocalizedString("settingsSaveButtonTitle", comment: "")
-        let settingsSharedButtonTitle = NSLocalizedString("settingsSharedButtonTitle", comment: "")
+        let settingsTitle             = localizedString(byKey: "settingsTitle")
+        let settingsMessage           = localizedString(byKey: "settingsMessage")
+        let settingsSaveButtonTitle   = localizedString(byKey: "settingsSaveButtonTitle")
+        let settingsSharedButtonTitle = localizedString(byKey: "settingsSharedButtonTitle")
         
         let alertSheet = UIAlertController(title: settingsTitle, message: settingsMessage, preferredStyle: .actionSheet)
         
@@ -123,22 +123,27 @@ class MainCoordinator: Coordinator {
         }
     }
     
+    
     @objc private func dismissSharedController() {
+        
         self.navigationController?.dismiss(animated: true)
     }
-
+    
     
     func presentActivityControllerToShare() {
-
+        
         guard let photoDetailVC = delegate as? PhotoDetailViewController, let image = photoDetailVC.imageView.image else {
             return
         }
         
-        let activityViewController = UIActivityViewController(activityItems: [image] , applicationActivities: nil)
+        let activityViewController = UIActivityViewController(
+            activityItems: [image] , applicationActivities: nil)
+        
         activityViewController.popoverPresentationController?.sourceView = photoDetailVC.view
-
+        
         navigationController?.present(activityViewController, animated: true)
     }
+    
     
     func presentAlert(withTitle title: String, andMessage message: String) {
         
@@ -150,10 +155,10 @@ class MainCoordinator: Coordinator {
     
     func didTapExitButton() {
         
-        let signOutTitle       = NSLocalizedString("signOutTitle", comment: "")
-        let signOutMessage     = NSLocalizedString("signOutMessage", comment: "")
-        let signOutCancelTitle = NSLocalizedString("signOutCancelTitle", comment: "")
-        let signOutButtonTitle = NSLocalizedString("signOutButtonTitle", comment: "")
+        let signOutTitle       = localizedString(byKey: "signOutTitle")
+        let signOutMessage     = localizedString(byKey: "signOutMessage")
+        let signOutCancelTitle = localizedString(byKey: "signOutCancelTitle")
+        let signOutButtonTitle = localizedString(byKey: "signOutButtonTitle")
         
         let alert = UIAlertController(title: signOutTitle,
                                       message: signOutMessage,
@@ -172,6 +177,26 @@ class MainCoordinator: Coordinator {
                     }
                 }
             })
+        
+        navigationController?.present(alert, animated: true)
+    }
+    
+    
+    func showLoadPhotosErrorMessage(error: String) {
+        
+        let title = localizedString(byKey: "failedToGetPhotosAlertTitle")
+        
+        let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+        
+        
+        let buttonTitle = localizedString(byKey: "noInternetConnectionButtonTitle")
+        
+        alert.addAction(
+            UIAlertAction(title: buttonTitle, style: .default) { [weak self] (_) in
+                (self?.delegate as? PhotosViewController)?.fetchPhotos()
+        })
         
         navigationController?.present(alert, animated: true)
     }
