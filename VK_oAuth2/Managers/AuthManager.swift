@@ -13,7 +13,7 @@ final class AuthManager {
     static let shared = AuthManager()
     
     struct Constants {
-        static let app_id = "7906804" //app_id вписать здесь
+        static let app_id = "" //app_id вписать здесь
     }
     
     //MARK: - Public properties
