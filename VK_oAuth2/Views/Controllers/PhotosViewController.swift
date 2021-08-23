@@ -10,6 +10,8 @@ import SnapKit
 
 class PhotosViewController: UIViewController {
     
+    var coordinator: MainCoordinator?
+    
     private var collectionView: UICollectionView?
     
     private var photos = [Photo]()
@@ -18,7 +20,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Mobile Up Gallery"
+        title = "Landscapes"
         view.backgroundColor = .systemBackground
         
         configureCollectionView()
@@ -40,13 +42,12 @@ class PhotosViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let space = CGFloat(0.5)
-        layout.minimumLineSpacing = space
-        layout.minimumInteritemSpacing = space
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: space * 2, right: 0)
-        let size = (view.frame.width / 2) -  2 * space
+        let space = CGFloat(2)
+        layout.minimumLineSpacing = space //между строками
+        layout.minimumInteritemSpacing = space //между ячейками в строке
+        //layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let size = (view.frame.width - space)/2
         layout.itemSize = CGSize(width: size, height: size)
-        
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView?.delegate   = self
@@ -104,31 +105,32 @@ class PhotosViewController: UIViewController {
     //MARK: - Actions
     @objc private func didTapExitButton() {
         
-        let signOutTitle       = NSLocalizedString("signOutTitle", comment: "")
-        let signOutMessage     = NSLocalizedString("signOutMessage", comment: "")
-        let signOutCancelTitle = NSLocalizedString("signOutCancelTitle", comment: "")
-        let signOutButtonTitle = NSLocalizedString("signOutButtonTitle", comment: "")
-        
-        let alert = UIAlertController(title: signOutTitle,
-                                      message: signOutMessage, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: signOutCancelTitle, style: .cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: signOutButtonTitle, style: .destructive, handler: { [weak self] _ in
-
-            AuthManager.shared.signOut { (success) in
-                if success {
-                    DispatchQueue.main.async {
-
-                        let loginVC = LoginViewController()
-                        loginVC.modalPresentationStyle = .fullScreen
-                        self?.present(loginVC, animated: true)
-                    }
-                }
-            }
-        }))
-        
-        present(alert, animated: true)
+        coordinator?.didTapExitButton()
+//        let signOutTitle       = NSLocalizedString("signOutTitle", comment: "")
+//        let signOutMessage     = NSLocalizedString("signOutMessage", comment: "")
+//        let signOutCancelTitle = NSLocalizedString("signOutCancelTitle", comment: "")
+//        let signOutButtonTitle = NSLocalizedString("signOutButtonTitle", comment: "")
+//        
+//        let alert = UIAlertController(title: signOutTitle,
+//                                      message: signOutMessage, preferredStyle: .alert)
+//        
+//        alert.addAction(UIAlertAction(title: signOutCancelTitle, style: .cancel, handler: nil))
+//        
+//        alert.addAction(UIAlertAction(title: signOutButtonTitle, style: .destructive, handler: { [weak self] _ in
+//
+//            AuthManager.shared.signOut { (success) in
+//                if success {
+//                    DispatchQueue.main.async {
+//
+//                        let loginVC = LoginViewController()
+//                        loginVC.modalPresentationStyle = .fullScreen
+//                        self?.present(loginVC, animated: true)
+//                    }
+//                }
+//            }
+//        }))
+//        
+//        present(alert, animated: true)
     }
 
 }
@@ -155,13 +157,17 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        collectionView.deselectItem(at: indexPath, animated: true)
         let photo = photos[indexPath.row]
         
         let otherPhotos = photos.filter{ $0.id != photo.id }
         
-        let detailVC = PhotoDetailViewController(mainPhoto: photo, andOtherPhotos: otherPhotos)
+        //DELETE
+//        let detailVC = PhotoDetailViewController(mainPhoto: photo, andOtherPhotos: otherPhotos)
 
-        navigationController?.pushViewController(detailVC, animated: true)
+        coordinator?.pushDetailPhotoVC(mainPhoto: photo, andOtherPhotos: otherPhotos)
+        //coordinator?.navigationController?.pushViewController(detailVC, animated: true)
+       // navigationController?.pushViewController(detailVC, animated: true)
     }
+    
 }

@@ -13,8 +13,8 @@ final class APICaller {
     static let shared = APICaller()
     
     struct Constants {
-        static let owner_id = "-128666765"
-        static let album_id = "266276915"
+        static let owner_id = "-65251721"
+        static let album_id = "186486245"
         static let basicURL = "https://api.vk.com/method/"
         static let albumPhotosURL = "photos.get?&owner_id=\(owner_id)&album_id=\(album_id)"
     }
@@ -33,7 +33,7 @@ final class APICaller {
 
     public func getAlbumPhotos(completion: @escaping (Result<[Photo], Error>) -> Void) {
         
-        guard let url = URL(string: Constants.basicURL + Constants.albumPhotosURL + "&access_token=\(AuthManager.shared.accessToken ?? "")&v=5.131") else {
+        guard let url = URL(string: Constants.basicURL + Constants.albumPhotosURL + "&access_token=\(AuthManager.shared.accessToken ?? "")&v=5.131&count=20") else {
             return
         }
 
@@ -56,7 +56,7 @@ final class APICaller {
                 
                 let photos: [Photo] = albumResponse.response.items.compactMap { (photoModel) -> Photo? in
                     
-                    return Photo(date: photoModel.date, id: photoModel.id, urlString: photoModel.sizes.filter{$0.type == "z"}.first?.url ?? "")
+                    return Photo(date: photoModel.date, id: photoModel.id, urlString: photoModel.sizes.filter{$0.type == "x"}.first?.url ?? "")
                 }
                 completion(.success(photos))
             }

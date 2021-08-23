@@ -10,7 +10,9 @@ import WebKit
 import SnapKit
 
 class AuthViewController: UIViewController, WKNavigationDelegate {
-
+    
+    var coordinator: MainCoordinator?
+    
     private let noConnectionView = NoInternetView()
     
     private let webView: WKWebView = {
@@ -76,7 +78,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
     
     //MARK: - WKNavigationDelegate 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print(error.localizedDescription)
+
         webView.isHidden = true
         indicator.stopAnimating()
         
@@ -89,6 +91,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         if webView.isHidden {
             webView.isHidden = false
         }
+        
         indicator.stopAnimating()
         if !noConnectionView.isHidden {
             noConnectionView.isHidden = true
@@ -124,6 +127,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
 }
 
 extension AuthViewController: NoInternetViewDelegate {
+    
     func didTapTryAgainButton() {
         noConnectionView.isHidden = true
         webView.isHidden = false

@@ -124,9 +124,9 @@
 		88E6911626A5B9E200DE1C69 /* VK_oAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				88E15B5F26D16BBA0020951C /* Coordinator */,
 				88E6911726A5B9E200DE1C69 /* AppDelegate.swift */,
 				88E6911926A5B9E200DE1C69 /* SceneDelegate.swift */,
+				88E15B5F26D16BBA0020951C /* Coordinator */,
 				88E6915426A5F2A700DE1C69 /* Models */,
 				88E6914626A5D7DF00DE1C69 /* Views */,
 				88A27A9326A640C700DAF439 /* ViewModels */,

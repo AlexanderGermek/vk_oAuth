@@ -7,11 +7,11 @@
 
 import UIKit
 
-extension SceneDelegate {
-    static var shared: SceneDelegate {
-        return UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
-    }
-}
+//extension SceneDelegate {
+//    static var shared: SceneDelegate {
+//        return UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
+//    }
+//}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,11 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        
-        let coordinator = MainCoordinator()
+        let coordinator = MainCoordinator(window: window)
         window.makeKeyAndVisible()
         self.window = window
-        
+        coordinator.name = "main"
         coordinator.start()
         
 

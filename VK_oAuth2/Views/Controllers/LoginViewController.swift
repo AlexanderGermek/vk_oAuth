@@ -9,10 +9,11 @@ import UIKit
 import SnapKit
 
 class LoginViewController: UIViewController {
+    var coordinator: MainCoordinator?
     
     private let MobileUpLabel: UILabel = {
         let label = UILabel()
-        label.text = "Mobile Up Gallery"
+        label.text = "Gallery Of Beautiful Landscapes"
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 48, weight: .bold)
@@ -62,39 +63,41 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func showErrorMessage() {
-        
-        let title = NSLocalizedString("authorizationFailedAlertTitle", comment: "")
-        let message = NSLocalizedString("authorizationFailedAlertMessage", comment: "")
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-        
-        present(alert, animated: true)
-    }
+    //DELETE
+//    private func showErrorMessage() {
+//
+//        let title = NSLocalizedString("authorizationFailedAlertTitle", comment: "")
+//        let message = NSLocalizedString("authorizationFailedAlertMessage", comment: "")
+//
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+//
+//        present(alert, animated: true)
+//    }
     
     //MARK: - Actions
     @objc private func didTapLoginButton() {
-
-        let authVC = AuthViewController()
-        
-        authVC.authCompletion = { [weak self] success in
-            
-            if success {
-                let photosVC = PhotosViewController()
-                let navVC = UINavigationController(rootViewController: photosVC)
-                navVC.navigationBar.isTranslucent = false
-                navVC.modalPresentationStyle = .fullScreen
-                self?.present(navVC, animated: true)
-                
-            }
-            else {
-                self?.showErrorMessage()
-            }
-        }
-        
-        authVC.modalPresentationStyle = .fullScreen
-        present(authVC, animated: true)
+        coordinator?.didTapLoginButton()
+        //Delete
+//        let authVC = AuthViewController()
+//
+//        authVC.authCompletion = { [weak self] success in
+//
+//            if success {
+//                let photosVC = PhotosViewController()
+//                let navVC = UINavigationController(rootViewController: photosVC)
+//                navVC.navigationBar.isTranslucent = false
+//                navVC.modalPresentationStyle = .fullScreen
+//                self?.present(navVC, animated: true)
+//
+//            }
+//            else {
+//                self?.showErrorMessage()
+//            }
+//        }
+//
+//        authVC.modalPresentationStyle = .fullScreen
+//        present(authVC, animated: true)
     }
 
 }

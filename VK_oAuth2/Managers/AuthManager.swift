@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//https://vk.com/album-65251721_186486245 - прямая ссылка на альбом
 final class AuthManager {
     
     static let shared = AuthManager()
@@ -97,6 +97,8 @@ final class AuthManager {
         UserDefaults.standard.setValue(nil, forKey: "expirationDate")
         
         completion(true)
+        
+        
     }
     
     //MARK: - Private func-s

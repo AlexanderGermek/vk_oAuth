@@ -8,7 +8,13 @@
 import UIKit
 import SDWebImage
 
+
+
 class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    var coordinator: MainCoordinator?
+    
+    var someClosure: (() -> Void)?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -16,7 +22,7 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
         return scrollView
     }()
     
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -25,7 +31,7 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private var collectionView: UICollectionView?
     
-    private var photo: Photo!
+    private var photo: Photo
     private var otherPhotos = [Photo]()
     private var imageViewScale = CGFloat()
 
@@ -72,7 +78,10 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private func configureBarButtons() {
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .done, target: self, action: #selector(didTapShareButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(didTapShareButton))
 
         let navBar = navigationController?.navigationBar
         navBar?.tintColor = .label
@@ -149,32 +158,7 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc private func didTapShareButton() {
                 
-        let settingsTitle = NSLocalizedString("settingsTitle", comment: "")
-        let settingsMessage = NSLocalizedString("settingsMessage", comment: "")
-        let settingsSaveButtonTitle = NSLocalizedString("settingsSaveButtonTitle", comment: "")
-        let settingsSharedButtonTitle = NSLocalizedString("settingsSharedButtonTitle", comment: "")
-
-        let alertSheet = UIAlertController(title: settingsTitle, message: settingsMessage, preferredStyle: .actionSheet)
-        
-        
-        //Save:
-        alertSheet.addAction(UIAlertAction(title: settingsSaveButtonTitle, style: .default, handler: { [weak self] (_) in
-            guard let image = self?.imageView.image else { return }
-            
-            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self?.image(_:didFinishSavingWithError:contextInfo:)), nil)
-        }))
-        
-        //Share:
-        alertSheet.addAction(UIAlertAction(title: settingsSharedButtonTitle, style: .default, handler: { [weak self] (_) in
-            
-            guard let image = self?.imageView.image else { return }
-        
-            let activityViewController = UIActivityViewController(activityItems: [image] , applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self?.view
-               self?.present(activityViewController, animated: true, completion: nil)
-        }))
-        
-        present(alertSheet, animated: true, completion: nil)
+        coordinator?.showAlertSheetToSaveOrShare()
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -190,13 +174,24 @@ class PhotoDetailViewController: UIViewController, UIGestureRecognizerDelegate {
             message = NSLocalizedString("saveInGallerySuccessMessage", comment: "")
         }
         
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        coordinator?.presentAlert(withTitle: title, andMessage: message)
+        
     }
     
 
 }
+
+extension PhotoDetailViewController: PhotoDetailViewShareMenuDelegate {
+    
+    func didTapSaveInGallery() {
+        
+        guard let image = imageView.image else { return }
+        
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+}
+
 
 extension PhotoDetailViewController: UICollectionViewDataSource {
     
@@ -219,3 +214,4 @@ extension PhotoDetailViewController: UICollectionViewDataSource {
     
     
 }
+
