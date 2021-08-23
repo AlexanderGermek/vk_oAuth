@@ -6,6 +6,9 @@
   
 */
 
+"AppNameLabel" = "Красивые пейзажи";
+
+"TitleForPhotosVC" = "Пейзажи";
 
 "authorizationTitleName" = "Вход через VK";
 "exitButtonTitle" = "Выход";

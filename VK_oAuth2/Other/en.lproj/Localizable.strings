@@ -6,6 +6,10 @@
   
 */
 
+"AppNameLabel" = "Gallery Of Beautiful Landscapes";
+
+"TitleForPhotosVC" = "Landscapes";
+
 "authorizationTitleName" = "Login from VK";
 "exitButtonTitle" = "Exit";
 "dateTitle" = "en_US";

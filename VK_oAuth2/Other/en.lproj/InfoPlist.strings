@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  VK_oAuth2
+
+  Created by iMac on 23.08.2021.
+  
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "Need access to gallery!";

@@ -9,11 +9,12 @@ import UIKit
 import SnapKit
 
 class LoginViewController: UIViewController {
+    
     var coordinator: MainCoordinator?
     
-    private let MobileUpLabel: UILabel = {
+    private let AppLabel: UILabel = {
         let label = UILabel()
-        label.text = "Gallery Of Beautiful Landscapes"
+        label.text = NSLocalizedString("AppNameLabel", comment: "")
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 48, weight: .bold)
@@ -35,20 +36,19 @@ class LoginViewController: UIViewController {
         
         title = ""
         view.backgroundColor = .white
-        view.addSubview(MobileUpLabel)
+        view.addSubview(AppLabel)
         view.addSubview(loginButton)
         
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
         makeConstraints()
-        
     }
     
     
     //MARK: - Private functions
     private func makeConstraints() {
         
-        MobileUpLabel.snp.makeConstraints { (make) in
+        AppLabel.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().inset(20)
             make.top.equalTo(view.snp.topMargin).offset(100)
@@ -63,41 +63,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //DELETE
-//    private func showErrorMessage() {
-//
-//        let title = NSLocalizedString("authorizationFailedAlertTitle", comment: "")
-//        let message = NSLocalizedString("authorizationFailedAlertMessage", comment: "")
-//
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-//
-//        present(alert, animated: true)
-//    }
     
     //MARK: - Actions
     @objc private func didTapLoginButton() {
         coordinator?.didTapLoginButton()
-        //Delete
-//        let authVC = AuthViewController()
-//
-//        authVC.authCompletion = { [weak self] success in
-//
-//            if success {
-//                let photosVC = PhotosViewController()
-//                let navVC = UINavigationController(rootViewController: photosVC)
-//                navVC.navigationBar.isTranslucent = false
-//                navVC.modalPresentationStyle = .fullScreen
-//                self?.present(navVC, animated: true)
-//
-//            }
-//            else {
-//                self?.showErrorMessage()
-//            }
-//        }
-//
-//        authVC.modalPresentationStyle = .fullScreen
-//        present(authVC, animated: true)
     }
 
 }

@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Landscapes"
+        title = NSLocalizedString("TitleForPhotosVC", comment: "")
         view.backgroundColor = .systemBackground
         
         configureCollectionView()

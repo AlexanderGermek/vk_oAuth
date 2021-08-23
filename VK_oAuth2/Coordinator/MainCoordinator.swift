@@ -15,8 +15,6 @@ class MainCoordinator: Coordinator {
     
     var navigationController: UINavigationController?
     
-    var name: String?
-    
     var window: UIWindow?
     
     var delegate: PhotoDetailViewShareMenuDelegate?
@@ -26,71 +24,53 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
+        
+        let shared = AuthManager.shared
 
-        if AuthManager.shared.isSignedIn && !AuthManager.shared.shouldRefreshToken {
+        if shared.isSignedIn && !shared.shouldRefreshToken {
 
             let photosVC = PhotosViewController()
             photosVC.coordinator = self
-//            let navVC = UINavigationController(rootViewController: photosVC)
             
-
             navigationController = UINavigationController(rootViewController: photosVC)
             navigationController?.navigationBar.isTranslucent = false
-            window?.rootViewController = navigationController
-//            guard let _ = window?.rootViewController else {
-            UIView.transition(with: window!,
-                              duration: 0.3,
-                              options: [.transitionFlipFromLeft],
-                              animations: { [self] in window?.rootViewController = navigationController},
-                              completion: nil)
-//                return
-//            }
+           // window?.rootViewController = navigationController
             
+            UIView.transition(with: window!, duration: 0.3, options: [.transitionFlipFromLeft]) { [weak self] in
+                self?.window?.rootViewController = self?.navigationController
+            }
           
-        }
-        else {
+        } else {
+            
             let loginVC = LoginViewController()
             loginVC.coordinator = self
-//            if loginVC.coordinator == nil {
-//                print("hm")
-//            }
-//            loginVC.modalPresentationStyle = .fullScreen
-//            //let navVC = UINavigationController(rootViewController: loginVC)
+
             
             navigationController = UINavigationController(rootViewController: loginVC)
             navigationController?.navigationBar.isHidden = true
-            window?.rootViewController = navigationController
+            //window?.rootViewController = navigationController
             
-            UIView.transition(with: window!,
-                              duration: 0.3,
-                              options: [.transitionFlipFromRight],
-                              animations: { [self] in window?.rootViewController = navigationController},
-                              completion: nil)
-            //navigationController?.present(loginVC, animated: true)
+            UIView.transition(with: window!, duration: 0.3, options: [.transitionFlipFromRight]) { [weak self] in
+                self?.window?.rootViewController = self?.navigationController
+            }
         }
-        
-
     }
     
     func didTapLoginButton() {
+        
         let authVC = AuthViewController()
         authVC.coordinator = self
-
+        
         authVC.authCompletion = { [weak self] success in
-
             if success {
                 self?.start()
-            }
-            else {
+            } else {
                 self?.showErrorAuthMessage()
             }
         }
         
-       authVC.modalPresentationStyle = .fullScreen
-        //SceneDelegate.shared.window?.rootViewController = authVC//present(authVC, animated: true)
-        //navigationController.pre
+        authVC.modalPresentationStyle = .fullScreen
         navigationController?.present(authVC, animated: true, completion: nil)
-        
         
     }
     
@@ -179,27 +159,19 @@ class MainCoordinator: Coordinator {
                                       message: signOutMessage,
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: signOutCancelTitle, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: signOutCancelTitle, style: .cancel))
         
-        alert.addAction(UIAlertAction(title: signOutButtonTitle, style: .destructive, handler: { [weak self] _ in
-
-            AuthManager.shared.signOut { (success) in
-                if success {
-                    DispatchQueue.main.async {
-                        self?.start()
-//                        let loginVC = LoginViewController()
-//                        loginVC.coordinator = self
-//
-//                        self?.navigationController = UINavigationController(rootViewController: loginVC)
-//                        self?.navigationController?.navigationBar.isHidden = true
-//                        self?.window?.rootViewController = self?.navigationController
-//                        let loginVC = LoginViewController()
-//                        loginVC.modalPresentationStyle = .fullScreen
-//                        self?.navigationController?.present(loginVC, animated: true)
+        alert.addAction(
+            UIAlertAction(title: signOutButtonTitle, style: .destructive) { [weak self] _ in
+                
+                AuthManager.shared.signOut { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self?.start()
+                        }
                     }
                 }
-            }
-        }))
+            })
         
         navigationController?.present(alert, animated: true)
     }

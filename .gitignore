@@ -1,2 +1,2 @@
 .gitignore/
-AuthManager.swift
+vk_oAuth2/Managers/AuthManager.swift

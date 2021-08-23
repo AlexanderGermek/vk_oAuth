@@ -13,7 +13,7 @@ final class AuthManager {
     static let shared = AuthManager()
     
     struct Constants {
-        static let app_id = "" //app_id вписать здесь
+        static let app_id = "7906804" //app_id вписать здесь
     }
     
     //MARK: - Public properties
@@ -74,10 +74,10 @@ final class AuthManager {
             else if parameter.hasPrefix("expires_in") {
                 
                 expires_in = Int(key_value[1])
-                
-            } else if parameter.hasPrefix("user_id") {
-                print(key_value[1])
             }
+//            } else if parameter.hasPrefix("user_id") {
+//                break//print(key_value[1])
+//            }
         }
         
         guard let token = access_token, let expires = expires_in else {
