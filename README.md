@@ -2,9 +2,9 @@
 
 Launch screen | Authorization | Connection Error View | Album photos
 --- | --- | --- | ---
-![Снимок экрана 2021-07-21 в 12 20 20](https://user-images.githubusercontent.com/76963888/126465117-b02a8030-8fc3-4e0f-b17d-a2696f79a19a.png)|![Снимок экрана 2021-07-21 в 12 20 32](https://user-images.githubusercontent.com/76963888/126465128-ae45609f-555c-45ee-b9c7-30e53272d768.png)|![Снимок экрана 2021-07-22 в 13 47 27](https://user-images.githubusercontent.com/76963888/126627817-2c88c502-75e7-4f73-90d0-3bee130f6d7b.png)|![Снимок экрана 2021-07-21 в 12 20 41](https://user-images.githubusercontent.com/76963888/126465145-1ce3ca16-cd20-4b82-a8e6-8646033e8a03.png)
+![1](https://user-images.githubusercontent.com/76963888/130477361-56fc61bc-d976-44e8-ad6c-41d820872356.png)|![2](https://user-images.githubusercontent.com/76963888/130477540-d395b82c-219f-4e06-b1d5-11bd95cab1fa.png)|![3](https://user-images.githubusercontent.com/76963888/130477553-6e538c3e-3ee0-4207-943d-11c5c3583e9c.png)|![4](https://user-images.githubusercontent.com/76963888/130477560-4e8dc013-afbd-4e72-8cf2-3d1e3d9007fd.png)
 
 
 Detail photo | Saving | Saving alert
 --- | --- | ---
-![Снимок экрана 2021-07-21 в 12 21 18](https://user-images.githubusercontent.com/76963888/126465153-ba2c1e4c-cb26-479a-9604-299174a21bd6.png)|![Снимок экрана 2021-07-21 в 12 21 37](https://user-images.githubusercontent.com/76963888/126465163-09f7423f-dbef-4248-9c9e-ff836d57ee61.png)|![Снимок экрана 2021-07-21 в 12 21 46](https://user-images.githubusercontent.com/76963888/126465174-94bf651c-52f4-45e6-87f8-b607edb28631.png)
+![5](https://user-images.githubusercontent.com/76963888/130477570-42ce0fdf-78d9-4bef-bcd2-54718f131b37.png)|![6](https://user-images.githubusercontent.com/76963888/130477574-31fe29ae-1b2d-4c15-b5e3-521ca049c053.png)|![7](https://user-images.githubusercontent.com/76963888/130477581-e19520bd-13b9-44ff-9d32-94d00252e10d.png)
